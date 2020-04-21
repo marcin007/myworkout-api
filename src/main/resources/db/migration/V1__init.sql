@@ -31,3 +31,75 @@ create table exercises
     foreign key (level_od_advancement_id) references levels_of_advancement (id),
     foreign key (user_id) references users (id)
 );
+
+create table exercise_photo
+(
+    id          bigint primary key,
+    exercise_id bigint              not null,
+    url         varchar(200) unique not null,
+
+    foreign key (exercise_id) references exercises (id)
+);
+
+create table user_photo
+(
+    id      bigint primary key,
+    user_id bigint              not null,
+    url     varchar(200) unique not null,
+
+    foreign key (user_id) references users (id)
+);
+
+create table traning_type
+(
+    id   bigint primary key,
+    name varchar(200) unique not null
+);
+
+create table traning
+(
+    id                       bigint primary key,
+    name                     varchar(200) unique not null,
+    description              varchar(400) unique not null,
+    user_id                  bigint              not null,
+    levels_of_advancement_id bigint              not null,
+    traning_type_id          bigint              not null,
+
+    foreign key (user_id) references users (id),
+    foreign key (levels_of_advancement_id) references levels_of_advancement (id),
+    foreign key (traning_type_id) references traning_type (id)
+);
+
+create table traning_exercises
+(
+    exercise_id  bigint not null,
+    traning_id   bigint not null,
+
+    reps         varchar(2),
+    time         varchar(10),
+    sets         varchar(2),
+    tempo        varchar(4),
+    order_number varchar(2),
+    description  varchar(400),
+
+    foreign key (exercise_id) references exercises (id),
+    foreign key (traning_id) references traning (id)
+
+);
+
+create table sesion //TODO czy jest ok? upewnic sie ze nie potrzebuje usera
+(
+    id           bigint primary key,
+    traning_id   bigint not null,
+
+    reps         varchar(2),
+    time         varchar(10),
+    sets         varchar(2),
+    tempo        varchar(4),
+    order_number varchar(2),
+    comment      varchar(400),
+    duration     bigint not null,
+
+    foreign key (traning_id) references traning (id)
+
+);
