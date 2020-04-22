@@ -30,10 +30,10 @@ public class User extends AbstractEntity {
     private Set<UserPhoto> userPhotos = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Traning> tranings = new HashSet<>();
+    private Set<Training> trainings = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Sesion> sesions = new HashSet<>();
+    private Set<Session> sessions = new HashSet<>();
 
 
 }

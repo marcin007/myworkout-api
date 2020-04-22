@@ -21,7 +21,7 @@ public class LevelOfAdvancement extends AbstractEntity{
 
 
     @OneToMany(mappedBy = "levelOfAdvancement")
-    private Set<Traning> tranings = new HashSet<>();
+    private Set<Training> trainings = new HashSet<>();
 
     @OneToMany(mappedBy = "levelOfAdvancement")
     private Set<Exercise> exercises = new HashSet<>();

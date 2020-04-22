@@ -38,9 +38,9 @@ public class Exercise extends AbstractEntity {
     private Set<ExercisePhoto> exercisePhotos;
 
     @OneToMany(mappedBy = "exercise")
-    private Set<SesionExercise> sesionExercises = new HashSet<>();
+    private Set<SessionExercise> sessionExercises = new HashSet<>();
 
     @OneToMany(mappedBy = "exercise")
-    private Set<TraningExercises> traningExercises = new HashSet<>();
+    private Set<TrainingExercises> trainingExercises = new HashSet<>();
 
 }
