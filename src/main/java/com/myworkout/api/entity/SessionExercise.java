@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "sesion_exercises")
-public class SesionExercise extends AbstractEntity {
+public class SessionExercise extends AbstractEntity {
 
     private int reps;
     private int sets;
@@ -31,5 +31,5 @@ public class SesionExercise extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "sesion_id", nullable = false)
-    private Sesion sesion;
+    private Session session;
 }

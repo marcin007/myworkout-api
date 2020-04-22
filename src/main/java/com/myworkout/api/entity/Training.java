@@ -15,14 +15,14 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "tranings")
-public class Traning extends AbstractEntity {
+public class Training extends AbstractEntity {
 
 
     private String name;
     private String description;
 
     @OneToMany(mappedBy = "traning")
-    private Set<TraningExercises> traningExercises = new HashSet<>();
+    private Set<TrainingExercises> trainingExercises = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,5 +34,5 @@ public class Traning extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "traning_type_id", nullable = false)
-    private TraningType traningType;
+    private TrainingType trainingType;
 }

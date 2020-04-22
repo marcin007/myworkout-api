@@ -1,9 +1,10 @@
 package com.myworkout.api.repository;
 
-import com.myworkout.api.entity.Sesion;
+
+import com.myworkout.api.entity.TrainingExercises;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SesionRepository extends JpaRepository<Sesion, Long> {
+public interface TrainingExercisesRepository extends JpaRepository<TrainingExercises, Long> {
 }

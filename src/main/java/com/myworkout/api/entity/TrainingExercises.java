@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "traning_exercises")
-public class TraningExercises {
+public class TrainingExercises extends AbstractEntity{
 
 
     private int reps;
@@ -34,7 +34,7 @@ public class TraningExercises {
 
     @ManyToOne
     @JoinColumn(name = "traning_id", nullable = false)
-    private Traning traning;
+    private Training training;
 
 
 

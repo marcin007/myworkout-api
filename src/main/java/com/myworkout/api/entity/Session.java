@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "sesions")
-public class Sesion extends AbstractEntity {
+public class Session extends AbstractEntity {
 
 
     private LocalDateTime time;
@@ -24,7 +24,7 @@ public class Sesion extends AbstractEntity {
     private String comment;
 
     @OneToMany(mappedBy = "sesion")
-    private Set<SesionExercise> sesionExercises = new HashSet<>();
+    private Set<SessionExercise> sessionExercises = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
