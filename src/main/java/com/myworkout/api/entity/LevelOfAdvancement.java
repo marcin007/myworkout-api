@@ -16,15 +16,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "level_of_advancement")
+@Table(name = "levels_of_advancement")
 public class LevelOfAdvancement extends AbstractEntity{
 
-
-    @OneToMany(mappedBy = "levelOfAdvancement")
-    private Set<Training> trainings = new HashSet<>();
-
-    @OneToMany(mappedBy = "levelOfAdvancement")
-    private Set<Exercise> exercises = new HashSet<>();
+    private String name;
 
 }
 

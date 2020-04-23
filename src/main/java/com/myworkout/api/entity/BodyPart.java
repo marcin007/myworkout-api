@@ -22,7 +22,5 @@ public class BodyPart extends AbstractEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "bodyParts")
-    private Set<Exercise> exercises = new HashSet<>();
 
 }

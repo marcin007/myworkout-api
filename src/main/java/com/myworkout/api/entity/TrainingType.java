@@ -16,13 +16,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "traning_types")
+@Table(name = "training_types")
 public class TrainingType extends AbstractEntity {
 
 
     private String name;
 
-    @OneToMany(mappedBy = "traningType")
+    @OneToMany(mappedBy = "trainingType")
     private Set<Training> trainings = new HashSet<>();
 
 }

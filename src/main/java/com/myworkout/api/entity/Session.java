@@ -15,15 +15,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "sesions")
+@Table(name = "sessions")
 public class Session extends AbstractEntity {
 
-
-    private LocalDateTime time;
-    private double duration;
+    private LocalDateTime startedAt;
+    private int duration;
     private String comment;
 
-    @OneToMany(mappedBy = "sesion")
+    @OneToMany(mappedBy = "session")
     private Set<SessionExercise> sessionExercises = new HashSet<>();
 
     @ManyToOne

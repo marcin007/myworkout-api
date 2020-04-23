@@ -14,15 +14,15 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tranings")
+@Table(name = "trainings")
 public class Training extends AbstractEntity {
 
 
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "traning")
-    private Set<TrainingExercises> trainingExercises = new HashSet<>();
+    @OneToMany(mappedBy = "training")
+    private Set<TrainingExercise> trainingExercises = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -33,6 +33,6 @@ public class Training extends AbstractEntity {
     private LevelOfAdvancement levelOfAdvancement;
 
     @ManyToOne
-    @JoinColumn(name = "traning_type_id", nullable = false)
+    @JoinColumn(name = "training_type_id", nullable = false)
     private TrainingType trainingType;
 }

@@ -7,31 +7,32 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "session_exercises")
-public class SessionExercise implements Serializable {
+@Table(name = "training_exercises")
+public class TrainingExercise implements Serializable {
+
 
     @EmbeddedId
-    private SessionExerciseId id;
-
-    @ManyToOne
-    @MapsId("sessionId")
-    private Session session;
+    private TrainingExerciseId id;
 
     @ManyToOne
     @MapsId("exerciseId")
     private Exercise exercise;
 
+    @ManyToOne
+    @MapsId("trainingId")
+    private Training training;
+
     private int reps;
     private int sets;
-    private int orderNumber;
     private int time;
-    private String tempo;
+    private int orderNumber;
     private String description;
-
+    private String tempo;
 }

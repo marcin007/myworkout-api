@@ -1,0 +1,1 @@
+insert into body_parts (name) values ('Chest'), ('Upper back');

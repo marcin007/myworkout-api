@@ -20,7 +20,6 @@ public class Exercise extends AbstractEntity {
 
     private String name;
 
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -37,10 +36,5 @@ public class Exercise extends AbstractEntity {
     @OneToMany(mappedBy = "exercise")
     private Set<ExercisePhoto> exercisePhotos;
 
-    @OneToMany(mappedBy = "exercise")
-    private Set<SessionExercise> sessionExercises = new HashSet<>();
-
-    @OneToMany(mappedBy = "exercise")
-    private Set<TrainingExercises> trainingExercises = new HashSet<>();
 
 }

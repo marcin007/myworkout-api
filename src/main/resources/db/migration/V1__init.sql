@@ -1,6 +1,6 @@
 create table body_parts
 (
-    id   bigint primary key,
+    id   bigint primary key auto_increment,
     name varchar(50) unique not null
 );
 
@@ -32,7 +32,7 @@ create table exercises
     foreign key (user_id) references users (id)
 );
 
-create table exercise_photo
+create table exercise_photos
 (
     id          bigint primary key,
     exercise_id bigint              not null,
@@ -41,7 +41,7 @@ create table exercise_photo
     foreign key (exercise_id) references exercises (id)
 );
 
-create table user_photo
+create table user_photos
 (
     id      bigint primary key,
     user_id bigint              not null,
@@ -50,56 +50,70 @@ create table user_photo
     foreign key (user_id) references users (id)
 );
 
-create table traning_type
+create table training_type
 (
     id   bigint primary key,
     name varchar(200) unique not null
 );
 
-create table traning
+create table trainings
 (
     id                       bigint primary key,
     name                     varchar(200) unique not null,
     description              varchar(400) unique not null,
     user_id                  bigint              not null,
     levels_of_advancement_id bigint              not null,
-    traning_type_id          bigint              not null,
+    training_type_id         bigint              not null,
 
     foreign key (user_id) references users (id),
     foreign key (levels_of_advancement_id) references levels_of_advancement (id),
-    foreign key (traning_type_id) references traning_type (id)
+    foreign key (training_type_id) references training_type (id)
 );
 
-create table traning_exercises
+create table training_exercises
 (
     exercise_id  bigint not null,
-    traning_id   bigint not null,
+    training_id  bigint not null,
 
-    reps         varchar(2),
-    time         varchar(10),
-    sets         varchar(2),
+    reps         int,
+    time         int,
+    sets         int,
     tempo        varchar(4),
-    order_number varchar(2),
+    order_number int,
     description  varchar(400),
 
     foreign key (exercise_id) references exercises (id),
-    foreign key (traning_id) references traning (id)
-
+    foreign key (training_id) references trainings (id),
+    primary key (exercise_id, training_id)
 );
 
-create table sesion //TODO czy jest ok? upewnic sie ze nie potrzebuje usera
+create table sessions
 (
     id           bigint primary key,
-    traning_id   bigint not null,
+    training_id  bigint     not null,
+    user_id      bigint     not null,
 
-    reps         varchar(2),
-    time         varchar(10),
-    sets         varchar(2),
-    tempo        varchar(4),
-    order_number varchar(2),
+    startedAt    timestamp,
     comment      varchar(400),
-    duration     bigint not null,
+    duration     int     not null,
 
-    foreign key (traning_id) references traning (id)
+    foreign key (training_id) references trainings (id),
+    foreign key (user_id) references users (id)
+);
 
+create table session_exercises
+(
+    session_id  bigint not null,
+    exercise_id  bigint not null,
+
+    reps         int,
+    time         int,
+    sets         int,
+    tempo        varchar(4),
+    order_number int,
+    description  varchar(400),
+
+    foreign key (session_id) references sessions (id),
+    foreign key (exercise_id) references exercises (id),
+    primary key (session_id, exercise_id)
 );
