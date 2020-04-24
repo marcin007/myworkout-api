@@ -6,35 +6,35 @@ create table body_parts
 
 create table levels_of_advancement
 (
-    id   bigint primary key,
+    id   bigint primary key auto_increment,
     name varchar(50) unique not null
 );
 
 create table users
 (
-    id           bigint primary key,
-    username     varchar(50) unique not null,
-    firstName    varchar(50)        not null,
-    lastNameName varchar(50)        not null
+    id        bigint primary key auto_increment,
+    username  varchar(50) unique not null,
+    firstName varchar(50)        not null,
+    lastName  varchar(50)        not null
 );
 
 create table exercises
 (
-    id                      bigint primary key,
+    id                      bigint primary key auto_increment,
     name                    varchar(50) unique not null,
     description             varchar(200)       not null,
     body_part_id            bigint             not null,
-    level_od_advancement_id bigint             not null,
+    level_of_advancement_id bigint             not null,
     user_id                 bigint             not null,
 
     foreign key (body_part_id) references body_parts (id),
-    foreign key (level_od_advancement_id) references levels_of_advancement (id),
+    foreign key (level_of_advancement_id) references levels_of_advancement (id),
     foreign key (user_id) references users (id)
 );
 
 create table exercise_photos
 (
-    id          bigint primary key,
+    id          bigint primary key auto_increment,
     exercise_id bigint              not null,
     url         varchar(200) unique not null,
 
@@ -43,7 +43,7 @@ create table exercise_photos
 
 create table user_photos
 (
-    id      bigint primary key,
+    id      bigint primary key auto_increment,
     user_id bigint              not null,
     url     varchar(200) unique not null,
 
@@ -52,15 +52,15 @@ create table user_photos
 
 create table training_type
 (
-    id   bigint primary key,
+    id   bigint primary key auto_increment,
     name varchar(200) unique not null
 );
 
 create table trainings
 (
-    id                       bigint primary key,
+    id                       bigint primary key auto_increment,
     name                     varchar(200) unique not null,
-    description              varchar(400) unique not null,
+    description              varchar(400)        not null,
     user_id                  bigint              not null,
     levels_of_advancement_id bigint              not null,
     training_type_id         bigint              not null,
@@ -89,13 +89,13 @@ create table training_exercises
 
 create table sessions
 (
-    id           bigint primary key,
-    training_id  bigint     not null,
-    user_id      bigint     not null,
+    id          bigint primary key auto_increment,
+    training_id bigint not null,
+    user_id     bigint not null,
 
-    startedAt    timestamp,
-    comment      varchar(400),
-    duration     int     not null,
+    startedAt   timestamp,
+    comment     varchar(400),
+    duration    int    not null,
 
     foreign key (training_id) references trainings (id),
     foreign key (user_id) references users (id)
@@ -103,7 +103,7 @@ create table sessions
 
 create table session_exercises
 (
-    session_id  bigint not null,
+    session_id   bigint not null,
     exercise_id  bigint not null,
 
     reps         int,
