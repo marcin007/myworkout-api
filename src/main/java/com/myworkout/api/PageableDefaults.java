@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
-public @interface PageableDefaults {
+public @interface  PageableDefaults {
 
     int maxSize() default 1000;
 

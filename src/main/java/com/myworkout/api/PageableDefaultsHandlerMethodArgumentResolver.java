@@ -32,7 +32,7 @@ public class PageableDefaultsHandlerMethodArgumentResolver extends PageableHandl
                 size = defaults.minSize();
             }
 
-            p = PageRequest.of(p.getPageSize(), size, p.getSort());
+            p = PageRequest.of(p.getPageNumber(), size, p.getSort());
         }
 
         return p;
