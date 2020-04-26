@@ -12,10 +12,14 @@ create table levels_of_advancement
 
 create table users
 (
-    id        bigint primary key auto_increment,
-    username  varchar(50) unique not null,
-    firstName varchar(50)        not null,
-    lastName  varchar(50)        not null
+    id         bigint primary key auto_increment,
+    username   varchar(50) unique not null,
+    first_name varchar(50)        not null,
+    last_name  varchar(50)        not null,
+    password   varchar(60)        not null,
+    age        int,
+    height     numeric(4,2),
+    weight     numeric(4,2)
 );
 
 create table exercises
@@ -93,7 +97,7 @@ create table sessions
     training_id bigint not null,
     user_id     bigint not null,
 
-    startedAt   timestamp,
+    started_at  timestamp,
     comment     varchar(400),
     duration    int    not null,
 
