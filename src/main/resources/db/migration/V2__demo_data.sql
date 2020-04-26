@@ -25,3 +25,19 @@ insert into trainings(name, description, user_id, levels_of_advancement_id, trai
 insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Push B', 'Training to perform in mondays', 2, 3,2 );
 insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Pull B ', 'Training to perform in tuesdays', 2, 3,2 );
 
+insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 1,1, 5, 120, 5,'2222',1, 'Training Exercise 1' );
+insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 2,1, 5, 90, 3,'2332',2, 'Training Exercise 2' );
+insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 3,1, 5, 100, 4,'2343',3, 'Training Exercise 3' );
+insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 1,2, 5, 70, 5,'2244',1, 'Training Exercise 4' );
+
+insert into sessions(training_id, user_id, comment, duration) values ( 4,1, 'The 1 session', 80 );
+insert into sessions(training_id, user_id, comment, duration) values ( 2,2, 'The 2 session', 90 );
+insert into sessions(training_id, user_id, comment, duration) values ( 1,2, 'The 3 session', 30 );
+insert into sessions(training_id, user_id, comment, duration) values ( 3,1, 'The 4 session', 120 );
+
+insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 1,1,5, 70, 5, 2432, 1, 'Session exercises 1' );
+insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 2,1,5, 110, 5, 2222, 2, 'Session exercises 2' );
+insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 3,2,5, 90, 5, 2112, 1, 'Session exercises 3' );
+insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 4,3,5, 120, 5, 2332, 2, 'Session exercises 4' );
+
+
