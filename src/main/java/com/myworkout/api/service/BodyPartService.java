@@ -1,6 +1,7 @@
 package com.myworkout.api.service;
 
 import com.myworkout.api.entity.BodyPart;
+import com.myworkout.api.exception.BodyPartNotFoundException;
 import com.myworkout.api.repository.BodyPartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,11 @@ public class BodyPartService {
 
     public Page<BodyPart> findAll(Pageable pageable) {
         return bodyPartRepository.findAll(pageable);
+    }
+
+    public BodyPart findById(Long id) {
+        return bodyPartRepository.findById(id)
+                .orElseThrow(BodyPartNotFoundException::new);
     }
 
 

@@ -5,10 +5,9 @@ import com.myworkout.api.PageableDefaults;
 import com.myworkout.api.entity.BodyPart;
 import com.myworkout.api.service.BodyPartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,6 +25,11 @@ public class BodyPartController {
     @GetMapping("/bodyParts")
     public List<BodyPart> getAll(@PageableDefaults(minSize = 50, maxSize = 50, size = 50) Pageable pageable) {
         return bodyPartService.findAll(pageable).getContent();
+    }
+
+    @GetMapping("/bodyParts/{id}")
+    public BodyPart getById(@PathVariable Long id){
+        return bodyPartService.findById(id);
     }
 
 

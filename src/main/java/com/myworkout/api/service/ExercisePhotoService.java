@@ -5,6 +5,8 @@ import com.myworkout.api.repository.ExercisePhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ExercisePhotoService {
 
@@ -14,4 +16,9 @@ public class ExercisePhotoService {
     public ExercisePhotoService(ExercisePhotoRepository exercisePhotoRepository) {
         this.exercisePhotoRepository = exercisePhotoRepository;
     }
+
+    public List<ExercisePhoto> getExercisePhotos(){
+        return exercisePhotoRepository.findAll();
+    }
+
 }
