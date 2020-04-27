@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class  UserDetailsServiceImpl implements UserDetailsService {
 
     Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
@@ -31,5 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         logger.debug("Próba autoryzacji.. " + user.getUsername());
 
         return new UserDetailsImpl(user);
+
     }
 }
