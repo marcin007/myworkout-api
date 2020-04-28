@@ -23,9 +23,9 @@ public class User extends AbstractEntity {
     private String lastName;
     private String username;
     private String password;
-    private int age;
-    private double weight;
-    private double height;
+    private Integer age;
+    private Double weight;
+    private Double height;
 
     @OneToMany(mappedBy = "user")
     private Set<UserPhoto> userPhotos = new HashSet<>();
