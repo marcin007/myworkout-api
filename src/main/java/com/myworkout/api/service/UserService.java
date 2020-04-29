@@ -27,7 +27,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findUserById(Long id){
+    public User findUserById(Long id){ //// TODO: 29.04.2020 czemu tutaj nie moge dodac UserNotFoundExeption ? 
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("not found"));
     }
 
