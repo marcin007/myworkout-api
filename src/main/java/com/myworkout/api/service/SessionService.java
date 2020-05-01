@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class SessionService {
 
-private SessionRepository sessionRepository;
+    private SessionRepository sessionRepository;
 
     @Autowired
     public SessionService(SessionRepository sessionRepository) {
