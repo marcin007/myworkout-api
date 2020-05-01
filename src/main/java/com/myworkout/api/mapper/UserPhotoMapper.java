@@ -15,7 +15,7 @@ import java.util.Set;
 public interface UserPhotoMapper {
 
     @Mappings({
-            @Mapping(target = "username", source = "username")
+            @Mapping(target = "username", source = "user.username")
 
     })
     UserPhotoDTO toUserPhotoDTO(UserPhoto userPhoto);
