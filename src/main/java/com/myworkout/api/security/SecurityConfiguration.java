@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // basic auth
-
     private final UserDetailsService userDetailsService;
 
     @Autowired
@@ -35,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/sessionExercises").hasAnyRole("ADMIN")
                 .antMatchers("/h2console/**", "/costam").permitAll()
                 .anyRequest().authenticated()
                 .and()
