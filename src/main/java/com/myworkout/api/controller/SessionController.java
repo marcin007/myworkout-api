@@ -3,17 +3,17 @@ package com.myworkout.api.controller;
 import com.myworkout.api.ApiInfo;
 import com.myworkout.api.dto.PatchSessionDTO;
 import com.myworkout.api.dto.SessionDTO;
-import com.myworkout.api.entity.Session;
+import com.myworkout.api.exception.ApiError;
 import com.myworkout.api.mapper.SessionMapper;
 import com.myworkout.api.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class SessionController {
@@ -33,27 +33,26 @@ public class SessionController {
 //
 //    }
 
-    @GetMapping("/users/{id}/sessions")
-    public List<SessionDTO> getSessionsByUsersId(@PathVariable Long id){
+    @GetMapping("/sessions")
+    public List<SessionDTO> getSessionsByUsersId(@PathVariable Long id) {
         return sessionMapper.toSessionDTO(sessionService.getSessionsByUsersId(id));
     }
 
-   @PostMapping("/users/sessions")
-    public SessionDTO postSession(@RequestBody SessionDTO sessionDTO){
+    @PostMapping("/sessions")
+    public SessionDTO postSession(@RequestBody SessionDTO sessionDTO) {
         return sessionMapper.toSessionDTO(sessionService.postSession(sessionMapper.toSessionEntity(sessionDTO)));
-   }
+    }
 
-   @DeleteMapping("/users/sessions/{id}")
-    public ApiInfo deleteSessionById(@PathVariable Long id){
+    @DeleteMapping("/sessions/{id}")
+    public ResponseEntity<ApiInfo> deleteSessionById(@PathVariable Long id) {
         sessionService.deleteSessionById(id);
-        return new ApiInfo("Deleted session", HttpStatus.OK.value());
-   }
+        return new ResponseEntity<>(new ApiInfo("Deleted session", HttpStatus.OK.value()), HttpStatus.OK);
+    }
 
-   @PatchMapping("/users/sessions/{id}")
-    public SessionDTO updateSession(@PathVariable Long id, @Valid @RequestBody PatchSessionDTO patchSessionDTO){
-        return sessionMapper.toSessionDTO(sessionService.updateSession(id,patchSessionDTO));
-   }
-
+    @PatchMapping("/sessions/{id}")
+    public SessionDTO updateSession(@PathVariable Long id, @Valid @RequestBody PatchSessionDTO patchSessionDTO) {
+        return sessionMapper.toSessionDTO(sessionService.updateSession(id, patchSessionDTO));
+    }
 
 
 }
