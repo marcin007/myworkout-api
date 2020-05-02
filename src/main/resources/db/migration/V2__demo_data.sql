@@ -14,9 +14,10 @@ insert into exercises(name, description, body_part_id, level_of_advancement_id, 
 insert into exercises(name, description, body_part_id, level_of_advancement_id, user_id) values ( 'Bench press', 'Exercise with barel', 1,2,3 );
 insert into exercises(name, description, body_part_id, level_of_advancement_id, user_id) values ( 'Running', 'Exercise on treadmill', 3, 1, 2 );
 
-insert into exercise_photos(exercise_id, url) values ( 1, 'www.picture.com/picture1.jpg' );
-insert into exercise_photos(exercise_id, url) values ( 2, 'www.picture.com/picture2.jpg' );
-insert into exercise_photos(exercise_id, url) values ( 3, 'www.picture.com/picture3.jpg' );
+insert into exercise_photos(exercise_id, url, name) values ( 1, 'www.picture.com/picture1.jpg', ' pic 1');
+insert into exercise_photos(exercise_id, url, name) values ( 2, 'www.picture.com/picture2.jpg', ' pic 2');
+insert into exercise_photos(exercise_id, url, name) values ( 3, 'www.picture.com/picture3.jpg', ' pic 3');
+
 
 insert into user_photos(user_id, url) values ( 1, 'www.picture.com/pictureOfUser1.jpg' );
 insert into user_photos(user_id, url) values ( 2, 'www.picture.com/pictureOfUser2.jpg' );

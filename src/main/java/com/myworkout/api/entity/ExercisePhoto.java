@@ -24,7 +24,7 @@ public class ExercisePhoto extends AbstractEntity {
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "exercise_photo_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false)
     private Exercise exercise;
 
 }

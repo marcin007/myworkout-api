@@ -1,34 +1,50 @@
 package com.myworkout.api.controller;
 
-
-import com.myworkout.api.entity.ExercisePhoto;
+import com.myworkout.api.ApiInfo;
+import com.myworkout.api.dto.ExercisePhotoDTO;
+import com.myworkout.api.dto.PatchExercisePhotoDTO;
+import com.myworkout.api.mapper.ExercisePhotoMapper;
 import com.myworkout.api.service.ExercisePhotoService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Table;
 import java.util.List;
-import java.util.Set;
 
 @RestController
-public class ExercisePhotoController{
+public class ExercisePhotoController {
 
     private ExercisePhotoService exercisePhotoService;
+    private ExercisePhotoMapper exercisePhotoMapper;
 
     @Autowired
-    public ExercisePhotoController(ExercisePhotoService exercisePhotoService) {
+    public ExercisePhotoController(ExercisePhotoService exercisePhotoService, ExercisePhotoMapper exercisePhotoMapper) {
         this.exercisePhotoService = exercisePhotoService;
+        this.exercisePhotoMapper = exercisePhotoMapper;
     }
 
 
-    @GetMapping("/exercise/exercisePhotos")//TODO czy to wina braku mapera?
-    public List<ExercisePhoto> getExercisePhotos(){
-        return exercisePhotoService.getExercisePhotos();
+    @GetMapping("/exercises/{id}/photos")
+    public List<ExercisePhotoDTO> getExercisePhotos(@PathVariable Long id) {
+        return exercisePhotoMapper.toDTO(exercisePhotoService.getExercisePhotos(id));
+
     }
 
+    @PostMapping("/exercises/photos")
+    public ExercisePhotoDTO postExercisePhoto(@RequestBody ExercisePhotoDTO exercisePhotoDTO){
+        return exercisePhotoMapper.toDTO(exercisePhotoService.post(exercisePhotoMapper.toEntity(exercisePhotoDTO)));
+    }
 
+    @DeleteMapping("/exercises/{id}/photos")
+    public ApiInfo deleteExercisePhoto(@PathVariable Long id){
+        exercisePhotoService.deleteExercisePhoto(id);
+        return new ApiInfo("Deleted exercise photo", HttpStatus.OK.value());
+
+    }
+
+    @PatchMapping("/exercises/{id}/photos")
+    public ExercisePhotoDTO updateExercisePhoto(@PathVariable Long id, @RequestBody PatchExercisePhotoDTO patchExercisePhotoDTO){
+        return exercisePhotoMapper.toDTO(exercisePhotoService.patchExercisePhoto(id, patchExercisePhotoDTO));
+    }
 
 }

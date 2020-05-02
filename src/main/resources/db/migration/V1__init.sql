@@ -30,8 +30,8 @@ create table roles
 
 create table user_roles
 (
-    user_id bigint not null ,
-    role_id bigint not null ,
+    user_id bigint not null,
+    role_id bigint not null,
 
     foreign key (user_id) references users (id),
     foreign key (role_id) references roles (id)
@@ -54,8 +54,10 @@ create table exercises
 create table exercise_photos
 (
     id          bigint primary key auto_increment,
-    exercise_id bigint              not null,
-    url         varchar(200) unique not null,
+    exercise_id bigint not null,
+    url         varchar(200),
+    name        varchar(200),
+
 
     foreign key (exercise_id) references exercises (id)
 );
