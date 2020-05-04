@@ -40,11 +40,12 @@ create table user_roles
 create table exercises
 (
     id                      bigint primary key auto_increment,
-    name                    varchar(50) unique not null,
-    description             varchar(200)       not null,
-    body_part_id            bigint             not null,
-    level_of_advancement_id bigint             not null,
-    user_id                 bigint             not null,
+    name                    varchar(50),
+    description             varchar(200),
+    body_part_id            bigint not null,
+    level_of_advancement_id bigint not null,
+    user_id                 bigint not null,
+    has_expired             boolean not null default false,
 
     foreign key (body_part_id) references body_parts (id),
     foreign key (level_of_advancement_id) references levels_of_advancement (id),
