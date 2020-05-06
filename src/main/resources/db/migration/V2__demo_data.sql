@@ -1,6 +1,6 @@
 insert into body_parts (name) values ('Chest'), ('Upper back'), ('Legs'), ('Triceps');
 
-insert into levels_of_advancement (name) values ( 'Basic'),('Advancement'),('Expert');
+insert into level_of_advancement (name) values ( 'Basic'),('Advancement'),('Expert');
 
 insert into users (username, first_name, last_name, password, age) values ( 'smucibucik', 'Radoslaw', 'Toczek', '$2a$10$VoUTR9bQZVxEjd5NTUqmgu4dr6jpNFP96Vf1aCiknD39/1QwZuZC6', 22);
 insert into users (username, first_name, last_name, password, age) values ( 'maxkarim', 'Czeslaw', 'Stefanski', '$2a$10$Yi19c24vSFW9gHGQnnpQJ.V8mOYF3NHlIDUWf2Wu8r1.mKIUraFGm', 11);
@@ -27,10 +27,10 @@ insert into user_photos(user_id, url) values ( 3, 'www.picture.com/pictureOfUser
 
 insert into training_type(name) values ( 'Time' ),('Weight');
 
-insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Push A', 'Training to perform in mondays', 1, 2,2 );
-insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Pull A ', 'Training to perform in tuesdays', 1, 2,2 );
-insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Push B', 'Training to perform in mondays', 2, 3,2 );
-insert into trainings(name, description, user_id, levels_of_advancement_id, training_type_id) values ( 'Pull B ', 'Training to perform in tuesdays', 2, 3,2 );
+insert into trainings(name, description, user_id, level_of_advancement_id, training_type_id) values ( 'Push A', 'Training to perform in mondays', 1, 2,2 );
+insert into trainings(name, description, user_id, level_of_advancement_id, training_type_id) values ( 'Pull A ', 'Training to perform in tuesdays', 1, 2,2 );
+insert into trainings(name, description, user_id, level_of_advancement_id, training_type_id) values ( 'Push B', 'Training to perform in mondays', 2, 3,2 );
+insert into trainings(name, description, user_id, level_of_advancement_id, training_type_id) values ( 'Pull B ', 'Training to perform in tuesdays', 2, 3,2 );
 
 insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 1,1, 5, 120, 5,'2222',1, 'Training Exercise 1' );
 insert into training_exercises(exercise_id, training_id, reps, time, sets, tempo, order_number, description) values ( 2,1, 5, 90, 3,'2332',2, 'Training Exercise 2' );
@@ -49,4 +49,4 @@ insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, 
 insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 3,2,5, 90, 5, 2112, 1, 'Session 3 exercises 2' );
 insert into session_exercises(session_id, exercise_id, reps, time, sets, tempo, order_number, description) values ( 4,3,5, 120, 5, 2332, 2, 'Session 4 exercises 3' );
 
-
+insert into api_keys(user_id, value, has_expired) VALUES ( 1,'1234',false ) ,( 2, 'asd', false);

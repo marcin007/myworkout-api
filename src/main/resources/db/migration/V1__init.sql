@@ -4,7 +4,7 @@ create table body_parts
     name varchar(50) unique not null
 );
 
-create table levels_of_advancement
+create table level_of_advancement
 (
     id   bigint primary key auto_increment,
     name varchar(50) unique not null
@@ -42,13 +42,13 @@ create table exercises
     id                      bigint primary key auto_increment,
     name                    varchar(50),
     description             varchar(200),
-    body_part_id            bigint not null,
-    level_of_advancement_id bigint not null,
-    user_id                 bigint not null,
+    body_part_id            bigint  not null,
+    level_of_advancement_id bigint  not null,
+    user_id                 bigint  not null,
     has_expired             boolean not null default false,
 
     foreign key (body_part_id) references body_parts (id),
-    foreign key (level_of_advancement_id) references levels_of_advancement (id),
+    foreign key (level_of_advancement_id) references level_of_advancement (id),
     foreign key (user_id) references users (id)
 );
 
@@ -80,22 +80,22 @@ create table training_type
 
 create table trainings
 (
-    id                       bigint primary key auto_increment,
-    name                     varchar(200) unique not null,
-    description              varchar(400)        not null,
-    user_id                  bigint              not null,
-    levels_of_advancement_id bigint              not null,
-    training_type_id         bigint              not null,
+    id                      bigint primary key auto_increment,
+    name                    varchar(200),
+    description             varchar(400),
+    user_id                 bigint,
+    level_of_advancement_id bigint,
+    training_type_id        bigint,
 
     foreign key (user_id) references users (id),
-    foreign key (levels_of_advancement_id) references levels_of_advancement (id),
+    foreign key (level_of_advancement_id) references level_of_advancement (id),
     foreign key (training_type_id) references training_type (id)
 );
 
 create table training_exercises
 (
-    exercise_id  bigint not null,
-    training_id  bigint not null,
+    exercise_id  bigint,
+    training_id  bigint,
 
     reps         int,
     time         int,
@@ -138,4 +138,14 @@ create table session_exercises
     foreign key (session_id) references sessions (id),
     foreign key (exercise_id) references exercises (id),
     primary key (session_id, exercise_id)
+);
+
+create table api_keys
+(
+    id          bigint primary key auto_increment,
+    user_id     bigint unique not null,
+    value       varchar(64) not null,
+    has_expired boolean default false,
+
+    foreign key (user_id) references users (id)
 );
