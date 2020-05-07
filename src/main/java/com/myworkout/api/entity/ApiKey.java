@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("api_keys")
+@Table(name = "api_keys")
 public class ApiKey extends AbstractEntity {
 
     @OneToOne
