@@ -20,13 +20,15 @@ public class Exercise extends AbstractEntity {
 
     private String name;
 
+    private Boolean hasExpired;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "body_part_id", nullable = false)
-    private BodyPart bodyParts;
+    private BodyPart bodyPart;
 
     @ManyToOne
     @JoinColumn(name = "level_of_advancement_id", nullable = false)
