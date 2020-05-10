@@ -1,6 +1,5 @@
 package com.myworkout.api.dto;
 
-import com.myworkout.api.entity.SessionExerciseId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SessionExerciseDTO {
+
 
     private Long sessionId;
     private Long exerciseId;

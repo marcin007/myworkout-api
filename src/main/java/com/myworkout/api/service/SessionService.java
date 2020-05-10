@@ -7,6 +7,7 @@ import com.myworkout.api.repository.SessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -38,8 +39,21 @@ public class SessionService {
 
    public Session updateSession(Long id, PatchSessionDTO patchSessionDTO){
         Session session = findById(id);
-        session.setComment(patchSessionDTO.getComment());
-        session.setDuration(patchSessionDTO.getDuration());
+        if(patchSessionDTO.getComment() != null){
+            session.setComment(patchSessionDTO.getComment());
+        }
+        if(patchSessionDTO.getDuration() != null){
+            session.setDuration(patchSessionDTO.getDuration());
+        }
         return sessionRepository.save(session);
    }
+
+    public List<Session> findAll() {
+        return sessionRepository.findAll();
+    }
+
+    public Session getUserSessionById(Long sessionId, Long userId) {
+        return sessionRepository.findByIdAndUserId(sessionId, userId)
+                .orElseThrow(() -> new RuntimeException("Nie ma sesji uzytkownika o podanym id"));
+    }
 }

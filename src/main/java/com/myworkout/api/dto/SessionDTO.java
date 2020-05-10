@@ -13,10 +13,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SessionDTO {
 
+    private Long id;
+    private Long UserId;
+
+    private String username;
     private LocalDateTime startedAt;
     private int duration;
     private String comment;
-    // TODO: 29.04.2020 brakuje atrybutów userId / username..
+
+public Integer getDuration(){
+    return duration;
+}
 
 
 }

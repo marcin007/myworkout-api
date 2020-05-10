@@ -22,11 +22,13 @@ public class Session extends AbstractEntity {
     private int duration;
     private String comment;
 
-    @OneToMany(mappedBy = "session")
-    private Set<SessionExercise> sessionExercises = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "session", cascade = CascadeType.REMOVE)
+    private Set<SessionExercise> sessionExercises = new HashSet<>();
+
+
 
 }

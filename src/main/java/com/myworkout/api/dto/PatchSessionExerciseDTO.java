@@ -1,33 +1,16 @@
-package com.myworkout.api.entity;
+package com.myworkout.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import javax.persistence.*;
-import java.io.Serializable;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "session_exercises")
-public class SessionExercise implements Serializable {
+public class PatchSessionExerciseDTO {
 
-    @EmbeddedId
-    private SessionExerciseId id;
-
-    @ManyToOne
-    @MapsId("sessionId")
-    private Session session;
-
-    @ManyToOne
-    @MapsId("exerciseId")
-    private Exercise exercise;
 
     private int reps;
     private int sets;
