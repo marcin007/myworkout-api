@@ -3,6 +3,7 @@ package com.myworkout.api.service;
 import com.myworkout.api.dto.PatchExercisePhotoDTO;
 import com.myworkout.api.entity.Exercise;
 import com.myworkout.api.entity.ExercisePhoto;
+import com.myworkout.api.exception.ExercisePhotoNotFoundException;
 import com.myworkout.api.repository.ExercisePhotoRepository;
 import com.myworkout.api.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,12 @@ public class ExercisePhotoService {
         exercisePhotoRepository.deleteById(id);
     }
 
+    public ExercisePhoto findById(Long id){
+        return exercisePhotoRepository.findById(id).orElseThrow(()-> new ExercisePhotoNotFoundException()); // (ExercisePhotoNotFoundException::new)
+    }
+
     public ExercisePhoto patchExercisePhoto(Long id, PatchExercisePhotoDTO patchExercisePhotoDTO) {
-    ExercisePhoto exercisePhoto = exercisePhotoRepository.findById(id).orElseThrow(()->new RuntimeException("To do."));
+    ExercisePhoto exercisePhoto = findById(id);
     Exercise exercise = exerciseRepository.findById(patchExercisePhotoDTO.getExerciseId()).orElseThrow(()->new RuntimeException("todo"));
     exercisePhoto.setName(patchExercisePhotoDTO.getName());
     exercisePhoto.setUrl(patchExercisePhotoDTO.getUrl());

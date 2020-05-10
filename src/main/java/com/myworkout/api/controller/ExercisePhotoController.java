@@ -7,6 +7,7 @@ import com.myworkout.api.mapper.ExercisePhotoMapper;
 import com.myworkout.api.service.ExercisePhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,9 +37,9 @@ public class ExercisePhotoController {
     }
 
     @DeleteMapping("/exercises/{id}/photos")
-    public ApiInfo deleteExercisePhoto(@PathVariable Long id){
+    public ResponseEntity<ApiInfo> deleteExercisePhoto(@PathVariable Long id){
         exercisePhotoService.deleteExercisePhoto(id);
-        return new ApiInfo("Deleted exercise photo", HttpStatus.OK.value());
+        return new ResponseEntity<>(new ApiInfo("Deleted exercise photo", HttpStatus.OK.value()), HttpStatus.OK);
 
     }
 

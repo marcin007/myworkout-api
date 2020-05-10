@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ExercisePhotoDTO {
 
+    private Long id;
     private String name;
     private String url;
     private Long exerciseId;
