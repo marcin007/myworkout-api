@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "levels_of_advancement")
+@Table(name = "level_of_advancement")
 public class LevelOfAdvancement extends AbstractEntity{
 
     private String name;
