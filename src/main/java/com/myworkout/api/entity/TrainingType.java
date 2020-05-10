@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "training_types")
+@Table(name = "training_type")
 public class TrainingType extends AbstractEntity {
 
 

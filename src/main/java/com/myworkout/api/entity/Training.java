@@ -21,9 +21,6 @@ public class Training extends AbstractEntity {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "training")
-    private Set<TrainingExercise> trainingExercises = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -35,4 +32,8 @@ public class Training extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "training_type_id", nullable = false)
     private TrainingType trainingType;
+
+    @OneToMany(mappedBy = "training")
+    private Set<TrainingExercise> trainingExercises = new HashSet<>();
+
 }
