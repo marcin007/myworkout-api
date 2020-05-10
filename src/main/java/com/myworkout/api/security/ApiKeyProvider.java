@@ -1,6 +1,7 @@
 package com.myworkout.api.security;
 
 import com.myworkout.api.entity.ApiKey;
+import com.myworkout.api.exception.ApiKeyNotFoundException;
 import com.myworkout.api.repository.ApiKeysRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +24,7 @@ public class ApiKeyProvider {
     }
 
     public Authentication getAuthentication(String apiKeyValue) { //znajdywanie uzytkownika
-        ApiKey apiKey = apiKeysRepository.findByValue(apiKeyValue).orElseThrow();// TODO: 06.05.2020 custom exception
+        ApiKey apiKey = apiKeysRepository.findByValue(apiKeyValue).orElseThrow(()-> new ApiKeyNotFoundException());// ok TODO: 06.05.2020 custom exception
         String username = apiKey.getUser().getUsername();
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

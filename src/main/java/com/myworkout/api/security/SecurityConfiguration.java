@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -17,10 +18,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     // basic auth
     private final UserDetailsService userDetailsService;
+    private ApiKeyProvider apiKeyProvider;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
+    public SecurityConfiguration(UserDetailsService userDetailsService, ApiKeyProvider apiKeyProvider) {
         this.userDetailsService = userDetailsService;
+        this.apiKeyProvider = apiKeyProvider;
     }
 
     @Bean
@@ -34,11 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/sessionExercises").hasAnyRole("ADMIN")
+                //.antMatchers("/sessionExercises").hasAnyRole("ADMIN")
                 .antMatchers("/h2console/**", "/costam").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .httpBasic();
+                .addFilterBefore(new ApiKeyFilter(apiKeyProvider), UsernamePasswordAuthenticationFilter.class);
+
     }
 
     @Override

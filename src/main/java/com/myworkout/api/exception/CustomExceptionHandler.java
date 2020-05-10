@@ -50,6 +50,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ApiError("Exercise not found exception.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ApiKeyNotFoundException.class)
+    public ResponseEntity<ApiError> handlerApiKeyNotFoundException(ApiKeyNotFoundException e, WebRequest webRequest){
+        return new ResponseEntity<>(new ApiError("Api key not found.", HttpStatus.UNAUTHORIZED.value()), HttpStatus.UNAUTHORIZED);
+    }
+
 
 
 
