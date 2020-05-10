@@ -10,6 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserPhotoDTO {
+
+    private Long id;
     private String url;
     private String username;
 }
