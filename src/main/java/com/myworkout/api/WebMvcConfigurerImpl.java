@@ -1,5 +1,6 @@
 package com.myworkout.api;
 
+import net.kaczmarzyk.spring.data.jpa.web.SpecificationArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,6 +14,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.addAll(Arrays.asList(
+                new SpecificationArgumentResolver(),
                 new PageableDefaultsHandlerMethodArgumentResolver()
         ));
     }

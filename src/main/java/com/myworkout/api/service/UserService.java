@@ -1,11 +1,11 @@
 package com.myworkout.api.service;
 
-
 import com.myworkout.api.dto.PatchUserDTO;
 import com.myworkout.api.dto.UserDTO;
 import com.myworkout.api.entity.User;
 import com.myworkout.api.exception.BodyPartNotFoundException;
 import com.myworkout.api.repository.UserRepository;
+import com.myworkout.api.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers(){
-        return userRepository.findAll();
+    public List<User> getUsers(UserSpecification userSpecification){
+        return userRepository.findAll(userSpecification);
     }
 
     public User findUserById(Long id){

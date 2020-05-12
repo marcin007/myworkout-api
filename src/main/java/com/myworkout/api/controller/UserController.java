@@ -5,9 +5,12 @@ import com.myworkout.api.dto.PatchUserDTO;
 import com.myworkout.api.dto.UserDTO;
 import com.myworkout.api.entity.User;
 import com.myworkout.api.mapper.UserMapper;
+import com.myworkout.api.security.IsAdmin;
 import com.myworkout.api.service.UserService;
+import com.myworkout.api.specification.UserSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,17 +29,19 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-
+//    @IsAdmin
     @GetMapping("/users")
-    public List<UserDTO> getUsers(){
-        return userMapper.toUserDTO(userService.getUsers());
+    public List<UserDTO> getUsers(UserSpecification userSpecification){
+        return userMapper.toUserDTO(userService.getUsers(userSpecification));
     }
 
+    @IsAdmin
     @GetMapping("/users/{user_id}")
     public UserDTO getUserById(@PathVariable("user_id") Long id){
         return userMapper.toUserDTO(userService.findUserById(id));
     }
 
+    @IsAdmin
     @PostMapping("/users")
     public UserDTO postUser(@RequestBody UserDTO user){
         return userMapper.toUserDTO(userService.postUser(userMapper.toUserEntity(user)));
