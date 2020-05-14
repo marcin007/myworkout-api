@@ -25,24 +25,21 @@ public class SessionExerciseController {
         this.sessionExerciseMapper = sessionExerciseMapper;
     }
 
-    @GetMapping("/sessions/{id}/exercises") // OK
+    @GetMapping("/sessions/{id}/exercises") //OK
     public List<SessionExerciseDTO> getExercisesBySessionId(@PathVariable Long id){
         return sessionExerciseMapper.toDto(sessionExerciseService.getExercisesBySessionId(id));
     }
 
-    @PostMapping("/sessions/{id}/exercises") // ok
+    @PostMapping("/sessions/{id}/exercises") //ok
     public SessionExerciseDTO postSessionExercise(@PathVariable Long id, @RequestBody SessionExerciseDTO sessionExerciseDTO){
         return sessionExerciseMapper.toDto(sessionExerciseService.postSessionExercise(id, sessionExerciseMapper.toEntity(sessionExerciseDTO)));
     }
 
-    @DeleteMapping("/sessions/{sessionId}/exercises/{exerciseId}") // - ok TODO NIE DZALA!!!!!!!!!!!!!!!!!!!!!!!! (chce żeby sie usuwalo wszyko(cała sesje) ale bez kaskadowego usuwania cwiczenia w exercises)
+    @DeleteMapping("/sessions/{sessionId}/exercises/{exerciseId}") //ok (chce żeby sie usuwalo wszyko(cała sesje) ale bez kaskadowego usuwania cwiczenia w exercises)
     public ResponseEntity<ApiInfo> deleteSessionExerciseById(@PathVariable Long sessionId, @PathVariable Long exerciseId){
         sessionExerciseService.deleteById(sessionId, exerciseId);
         return new ResponseEntity<>(new ApiInfo("deleted session exercise", HttpStatus.OK.value()), HttpStatus.OK);
     }
-
-
-   // @DeleteMapping("/sessions/{sessionsId}/exercises/{exercisesId}")  // TODO(chce usunąc jakieś cieczenie w konkretnej sesji)      JAK ZROBIC ???????????
 
 
     @PatchMapping("/sessions/{sessionId}/exercises/{exerciseId}") //ok
