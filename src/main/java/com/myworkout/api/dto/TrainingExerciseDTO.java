@@ -19,4 +19,19 @@ public class TrainingExerciseDTO {
     private int time;
     private int orderNumber;
 
+    public Integer getReps() {
+        return reps;
+    }
+
+    public Integer getSets() {
+        return sets;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
 }
