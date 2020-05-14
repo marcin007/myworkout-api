@@ -31,11 +31,12 @@ public class SessionController {
         return sessionMapper.toSessionDTO(sessionService.findAll());
     }
 
-    // users/id/sessions/id -> wyswietlenie sessji o danym id uzytkownika o danym id
+    //users/id/sessions/id -> wyswietlenie sessji o danym id uzytkownika o danym id
     @GetMapping("/users/{userId}/sessions{sessionId}") //ok
     public SessionDTO getUserSessionById(@PathVariable Long userId, @PathVariable Long sessionId){
         return sessionMapper.toSessionDTO(sessionService.getUserSessionById(sessionId, userId));
     }
+
     //SessionDetailsDTO show all exercises in given session.
     @GetMapping("/sessions/{id}")//ok
     public SessionDetailsDTO getSessionDetailsById(@PathVariable Long id) {
@@ -48,7 +49,7 @@ public class SessionController {
     }
 
 
-    @DeleteMapping("/sessions/{id}")  //ok
+    @DeleteMapping("/sessions/{id}") //ok
     public ResponseEntity<ApiInfo> deleteSessionById(@PathVariable Long id) {
         sessionService.deleteSessionById(id);
         return new ResponseEntity<>(new ApiInfo("Deleted session", HttpStatus.OK.value()), HttpStatus.OK);

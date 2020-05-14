@@ -30,5 +30,4 @@ public class Session extends AbstractEntity {
     private Set<SessionExercise> sessionExercises = new HashSet<>();
 
 
-
 }
