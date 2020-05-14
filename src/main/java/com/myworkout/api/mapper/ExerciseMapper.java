@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Mapper(componentModel = "spring")
-// ok TODO: 03.05.2020 uses zastąpić własną implementacją, żeby klasa była testowalna ???
 public abstract class ExerciseMapper {
 
     private LevelOfAdvancementRepository levelOfAdvancementRepository;
@@ -49,7 +48,6 @@ public abstract class ExerciseMapper {
             @Mapping(target = "bodyPartId", source = "bodyPart.id"),
             @Mapping(target = "userId", source = "user.id"),
             @Mapping(target = "levelOfAdvancementId", source = "levelOfAdvancement.id")
-            //@Mapping(target = "")
     })
 
     public Exercise toEntity(ExerciseDTO exerciseDTO) {
@@ -181,7 +179,4 @@ public abstract class ExerciseMapper {
         return id;
     }
 
-//    public abstract ExerciseDTO toDTO(Exercise byId);
-//
-//    public abstract List<ExerciseDTO> toDTO(Collection<Exercise> exercises);
 }
