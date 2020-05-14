@@ -86,6 +86,7 @@ create table trainings
     user_id                 bigint,
     level_of_advancement_id bigint,
     training_type_id        bigint,
+    has_expired             boolean not null default false,
 
     foreign key (user_id) references users (id),
     foreign key (level_of_advancement_id) references level_of_advancement (id),
@@ -94,8 +95,8 @@ create table trainings
 
 create table training_exercises
 (
-    exercise_id  bigint,
-    training_id  bigint,
+    exercise_id  bigint not null,
+    training_id  bigint not null,
 
     reps         int,
     time         int,
@@ -144,7 +145,7 @@ create table api_keys
 (
     id          bigint primary key auto_increment,
     user_id     bigint unique not null,
-    value       varchar(64) not null,
+    value       varchar(64)   not null,
     has_expired boolean default false,
 
     foreign key (user_id) references users (id)

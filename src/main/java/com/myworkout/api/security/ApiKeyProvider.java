@@ -24,7 +24,7 @@ public class ApiKeyProvider {
     }
 
     public Authentication getAuthentication(String apiKeyValue) { //znajdywanie uzytkownika
-        ApiKey apiKey = apiKeysRepository.findByValue(apiKeyValue).orElseThrow(()-> new ApiKeyNotFoundException());// ok TODO: 06.05.2020 custom exception
+        ApiKey apiKey = apiKeysRepository.findByValue(apiKeyValue).orElseThrow(()-> new ApiKeyNotFoundException());
         String username = apiKey.getUser().getUsername();
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
