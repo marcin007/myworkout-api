@@ -18,8 +18,10 @@ import java.util.Set;
 public class Training extends AbstractEntity {
 
 
+
     private String name;
     private String description;
+    private Boolean hasExpired;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -33,7 +35,11 @@ public class Training extends AbstractEntity {
     @JoinColumn(name = "training_type_id", nullable = false)
     private TrainingType trainingType;
 
-    @OneToMany(mappedBy = "training")
+    @OneToMany(mappedBy = "training", cascade = CascadeType.REMOVE)
     private Set<TrainingExercise> trainingExercises = new HashSet<>();
 
+
+    public Training(String info) {
+        this.description = info;
+    }
 }

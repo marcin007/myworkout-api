@@ -74,7 +74,6 @@ public abstract class TrainingMapper {
             training.setDescription(trainingDTO.getDescription());
         }
 
-
         return training;
     }
 }
