@@ -42,7 +42,7 @@ public class TrainingController {
         return trainingMapper.toDTO(trainingService.postTraining(trainingMapper.toEntity(trainingDTO)));
     }
 
-    @DeleteMapping("/trainings/{id}")// TODO NIEDZIALA !!!
+    @DeleteMapping("/trainings/{id}")//ok
     public ResponseEntity<ApiInfo> deleteTrainingById(@PathVariable Long id){
         trainingService.deleteById(id);
         return new ResponseEntity<>(new ApiInfo("Training deleted...", HttpStatus.OK.value()),HttpStatus.OK);

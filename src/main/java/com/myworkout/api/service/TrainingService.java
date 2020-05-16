@@ -39,26 +39,20 @@ public class TrainingService {
 
     }
 
-    public Training getTrainingsById(Long id) {//ok TODO DOBRZE????????
+    public Training getTrainingsById(Long id) {
         return trainingRepository.findByIdAndHasExpiredFalse(id).orElseThrow(() -> new NotFoundException("Training not found..."));
 
-//        Training training = trainingRepository.findById(id).orElseThrow(() -> new NotFoundException("Training not found..."));
-//
-//        if (training.getHasExpired()) {
-//            throw new NotFoundException("Training not found...");
-//        }
-//
-//        return training;
+/*       Training training = trainingRepository.findById(id).orElseThrow(() -> new NotFoundException("Training not found..."));
+        if (training.getHasExpired()) {
+            throw new NotFoundException("Training not found...");
+        }
+        return training;
+* */
 
-
-//
-//        if(training.getHasExpired())
-//            return new Training("Training was deleted");
-//        else return training;
     }
 
     public Training postTraining(Training training) {
-     return trainingRepository.save(training);
+        return trainingRepository.save(training);
     }
 
     public void deleteById(Long id) {
@@ -68,15 +62,15 @@ public class TrainingService {
     }
 
     private Training findById(Long id) {
-        return trainingRepository.findById(id).orElseThrow(()-> new NotFoundException("Training not found..."));
+        return trainingRepository.findById(id).orElseThrow(() -> new NotFoundException("Training not found..."));
     }
 
     public Training updateTraining(Long id, PatchTrainingDTO patchTrainingDTO) {
         Training training = findById(id);
         if (patchTrainingDTO.getName() != null)
-        training.setName(patchTrainingDTO.getName());
-        if(patchTrainingDTO.getDescription() != null)
-        training.setDescription(patchTrainingDTO.getDescription());
+            training.setName(patchTrainingDTO.getName());
+        if (patchTrainingDTO.getDescription() != null)
+            training.setDescription(patchTrainingDTO.getDescription());
 
         return trainingRepository.save(training);
     }
