@@ -26,7 +26,7 @@ public class TrainingService {
         this.trainingRepository = trainingRepository;
     }
 
-    public List<Training> getTrainings() {//ok TODO NIE DZIALA!!!!!!!!!
+    public List<Training> getTrainings() {//ok
 //        return trainingRepository.findAllByHasExpiredFalse();
 
         return trainingRepository.findAll().stream()
