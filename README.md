@@ -5,7 +5,7 @@ An app to track exercise progress. [Spring Boot] [Maven] [H2] [Flyway] [Security
 
 This is a simple api of application for tracking your exercises with 
 **[Spring Boot](https://spring.io/projects/spring-boot)**
-The backend of API is complete and secured via API key.
+The application is secured via API key.
 
 
 
@@ -13,21 +13,13 @@ The backend of API is complete and secured via API key.
 This demo is build with with Maven 3.6.x and Java 11
 
 ## Usage
-Just start the application with the Spring Boot maven plugin (`mvn spring-boot:run`). The application is
-running at [http://localhost:8080]
+Just start the application with the Spring Boot maven plugin (`mvn spring-boot:run`).
 
-You can use the **H2-Console** for exploring the database under [http://localhost:8080/h2console](http://localhost:8080/h2console):
+You can use the **H2-Console** for exploring the database under [http://localhost:8080/h2console](http://localhost:8080/h2console)
 
 
 ## Backend
 
-There are three user accounts
-
-```
-Admin - relicoh:123
-User - smucibucik:123
-Moderator uiop:123
-```
 Endpoints for Body Part Controller:
 ```
 GET:
@@ -160,7 +152,6 @@ Endpoints for User Photo Controller:
 GET:
 /users/photos - in response you will get list of photos.
 /users/photos/{userPhoto_id} - in response you will get list of photos given user.
-
 
 POST:
 /users/photos - by this endpoint you can add new photo.
