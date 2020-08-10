@@ -21,16 +21,15 @@ public class TrainingExerciseController {
         this.trainingExercisesMapper = trainingExercisesMapper;
     }
 
-    @GetMapping("/trainings/{id}/exercises")//ok
+    @GetMapping("/trainings/{id}/exercises")
     public List<TrainingExerciseDTO> getExercises(@PathVariable Long id){
         return trainingExercisesMapper.toDTO(trainingExercisesService.getExercisesById(id));
     }
 
-    @PostMapping("/trainings/{id}/exercises")//nie dziala
+    @PostMapping("/trainings/{id}/exercises")
     public TrainingExerciseDTO postTrainingExercise(@PathVariable Long id, @RequestBody TrainingExerciseDTO trainingExerciseDTO){
         return trainingExercisesMapper.toDTO(trainingExercisesService.postTrainingExercise(id, trainingExerciseDTO));
     }
 
-    //@DeleteMapping("/trainings/{trainingsId}/exercises/{exerciseId}")
-    //@PatchMapping("/sessions/{sessionId}/exercises/{exerciseId}")
+
 }

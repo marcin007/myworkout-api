@@ -42,13 +42,13 @@ public class ExerciseController {
         return exerciseMapper.toDTO(exerciseService.postExercise(exerciseMapper.toEntity(exerciseDTO)));
     }
 
-    @DeleteMapping("/exercises/{id}")//ok
+    @DeleteMapping("/exercises/{id}")
     public ResponseEntity<ApiInfo> deleteExerciseById(@PathVariable Long id){
         exerciseService.deleteExerciseById(id);
         return new ResponseEntity<>(new ApiInfo("Deleted Exercise", HttpStatus.OK.value()), HttpStatus.OK);
     }
 
-    @PatchMapping("/exercises/{id}") //TODO Nadal nie moge tego zrobic
+    @PatchMapping("/exercises/{id}")
     public ExerciseDTO updateExercise(@PathVariable Long id, @Valid @RequestBody PatchExerciseDTO patchExerciseDTO){
         return exerciseMapper.toDTO(exerciseService.updateExercise(id, exerciseMapper.fromPatchDtoToEntity(patchExerciseDTO)));
     }

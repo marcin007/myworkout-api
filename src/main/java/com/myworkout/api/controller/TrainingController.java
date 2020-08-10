@@ -26,29 +26,29 @@ public class TrainingController {
         this.trainingMapper = trainingMapper;
     }
 
-    @GetMapping("/trainings") //ok
+    @GetMapping("/trainings")
     List<TrainingDTO> getTrainings(){
         return trainingMapper.toDTO(trainingService.getTrainings());
     }
 
 
-    @GetMapping("/trainings/{id}")//ok
+    @GetMapping("/trainings/{id}")
     TrainingDetailsDTO getTrainingDetailsDTO(@PathVariable Long id){
         return trainingMapper.toDetailsDTO(trainingService.getTrainingsById(id));
     }
 
-    @PostMapping("/trainings") //ok
+    @PostMapping("/trainings")
     public TrainingDTO postTraining(@RequestBody TrainingDTO trainingDTO){
         return trainingMapper.toDTO(trainingService.postTraining(trainingMapper.toEntity(trainingDTO)));
     }
 
-    @DeleteMapping("/trainings/{id}")//ok
+    @DeleteMapping("/trainings/{id}")
     public ResponseEntity<ApiInfo> deleteTrainingById(@PathVariable Long id){
         trainingService.deleteById(id);
         return new ResponseEntity<>(new ApiInfo("Training deleted...", HttpStatus.OK.value()),HttpStatus.OK);
     }
 
-    @PatchMapping("/trainings/{id}")//ok
+    @PatchMapping("/trainings/{id}")
     public TrainingDTO updateTraining(@PathVariable Long id, @RequestBody PatchTrainingDTO patchTrainingDTO){
         return trainingMapper.toDTO(trainingService.updateTraining(id, patchTrainingDTO));
     }

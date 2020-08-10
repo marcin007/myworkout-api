@@ -26,36 +26,35 @@ public class SessionController {
         this.sessionMapper = sessionMapper;
     }
 
-    @GetMapping("/sessions") //ok
+    @GetMapping("/sessions")
     public List<SessionDTO> getAllSessions() {
         return sessionMapper.toSessionDTO(sessionService.findAll());
     }
 
-    //users/id/sessions/id -> wyswietlenie sessji o danym id uzytkownika o danym id
-    @GetMapping("/users/{userId}/sessions{sessionId}") //ok
+
+    @GetMapping("/users/{userId}/sessions{sessionId}")
     public SessionDTO getUserSessionById(@PathVariable Long userId, @PathVariable Long sessionId){
         return sessionMapper.toSessionDTO(sessionService.getUserSessionById(sessionId, userId));
     }
 
-    //SessionDetailsDTO show all exercises in given session.
-    @GetMapping("/sessions/{id}")//ok
+
+    @GetMapping("/sessions/{id}")
     public SessionDetailsDTO getSessionDetailsById(@PathVariable Long id) {
         return sessionMapper.toSessionDetailsDto(sessionService.findById(id));
     }
 
-    @PostMapping("/sessions") //ok
+    @PostMapping("/sessions")
     public SessionDTO postSession(@RequestBody SessionDTO sessionDTO) {
         return sessionMapper.toSessionDTO(sessionService.postSession(sessionMapper.toSessionEntity(sessionDTO)));
     }
 
-
-    @DeleteMapping("/sessions/{id}") //ok
+    @DeleteMapping("/sessions/{id}")
     public ResponseEntity<ApiInfo> deleteSessionById(@PathVariable Long id) {
         sessionService.deleteSessionById(id);
         return new ResponseEntity<>(new ApiInfo("Deleted session", HttpStatus.OK.value()), HttpStatus.OK);
     }//Chce usunac sesje tak aby tez sie usunela w Session Exercises dlatego dodaje atrybut CascadeType.REMOVE
 
-    @PatchMapping("/sessions/{id}") //ok
+    @PatchMapping("/sessions/{id}")
     public SessionDTO updateSession(@PathVariable Long id, @Valid @RequestBody PatchSessionDTO patchSessionDTO) {
         return sessionMapper.toSessionDTO(sessionService.updateSession(id, patchSessionDTO));
     }

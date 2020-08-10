@@ -29,7 +29,7 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-//    @IsAdmin
+
     @GetMapping("/users")
     public List<UserDTO> getUsers(UserSpecification userSpecification){
         return userMapper.toUserDTO(userService.getUsers(userSpecification));
